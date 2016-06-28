@@ -101,5 +101,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
+    /*
+     * Function Name: locationManager
+     * Parameters: manager - the manager handling this method.
+     *   beacons - the beacons that were found.
+     *   region - the region that the beacons were found.
+     * Purpose: This method checks to see if there are any beacons and updates the distance to these beacons.
+     * Return Value: None
+     */
+    
+    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+        if beacons.count > 0 {
+            let beacon = beacons[0]
+            updateDistance(beacon.proximity)
+        } else {
+            updateDistance(.Unknown)
+        }
+    }
 }
 
